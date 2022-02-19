@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patch | User</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Arvo&family=Permanent+Marker&family=Trochut&family=UnifrakturMaguntia&display=swap"
+        rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+    <!-- BootStrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user.css') }}">
+</head>
+
+<body id="bg-img">
+
+    <div class="container text-center">
+        <form action="" method="POST">
+
+            <select name="state" required class="col-10">
+                <option value="" disabled selected hidden>Select State</option>
+                <option value="andhrapradesh">Andhra Pradesh</option>
+                <option value="arunachalpradesh">Arunachal Pradesh</option>
+                <option value="assam">Assam</option>
+                <option value="bihar">Bihar</option>
+                <option value="chhattisgarh">Chhattisgarh</option>
+                <option value="goa">Goa</option>
+                <option value="gujarat">Gujarat</option>
+                <option value="haryana">Haryana</option>
+                <option value="himachalpradesh">Himachal Pradesh</option>
+                <option value="jammukashmir">Jammu and Kashmir</option>
+                <option value="jharkhan">Jharkhand</option>
+                <option value="karnataka">Karnataka</option>
+                <option value="kerala">Kerala</option>
+                <option value="madhyapradesh">Madhya Pradesh</option>
+                <option value="maharashtra">Maharashtra</option>
+                <option value="manipur">Manipur</option>
+                <option value="meghalaya">Meghalaya</option>
+                <option value="mizoram">Mizoram</option>
+                <option value="nagaland">Nagaland</option>
+                <option value="orissa">Orissa</option>
+                <option value="punjab">Punjab</option>
+                <option value="rajasthan">Rajasthan</option>
+                <option value="sikkim">Sikkim</option>
+                <option value="tamilnadu">Tamil Nadu</option>
+                <option value="telangana">Telangana</option>
+                <option value="tripura">Tripura</option>
+                <option value="uttarpradesh">Uttar Pradesh</option>
+                <option value="uttarakhand">Uttarakhand</option>
+                <option value="westbengal">West Bengal</option>
+            </select>
+
+            <input type="text" name="city" placeholder="Enter City" required class="city col-10">
+
+            <select name="place" id="places" required class="col-10">
+                <option value="" disabled selected hidden>Select Venue</option>
+                <option value="hotel">Hotels</option>
+                <option value="cinema">Cinema Theatres</option>
+                <option value="garden">Gardens & Parks</option>
+                <option value="malls">Malls</option>
+            </select>
+
+            <button type="button" class="btn dropdown-toggle col-10" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false" style="background-color: white;">
+                Select facilities you want
+            </button>
+            <div class="dropdown-menu col-10" id="facilities">
+            </div>
+
+            <script>
+                $('#places').on('change', function () {
+                    console.log($('#places').val())
+                    $('#facilities').html('');
+                    if ($('#places').val() == 'hotel') {
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="doors"><label for="1">Automatic Doors</label> <br>');
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="entryspace"><label for="1">Wheelchair Entry Space</label> <br>');
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="slip"><label for="1">Slip Resistant flooring</label> <br>');
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="toilets"><label for="1">Wheelchair Friendly Toilets</label> <br>');
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="ramp"><label for="1">Slope/Ramps/Lifts</label> <br>');
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="sign"><label for="1">Employee trained with Sign Language</label> <br>');
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="blocks"><label for="1">Guiding blocks for person with impaired vision</label> <br>');
+                    }
+                    else if ($('#places').val() == 'garden') {
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="seating"><label for="1">Plenty of Seating facilities</label> <br>');
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="v"><label for="1">Information board in Braille</label> <br>');
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="signages"><label for="1">Information board in Audible Signages</label> <br>');
+                    }
+                    else if ($('#places').val() == 'malls') {
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="doors"><label for="1">Automatic Doors</label> <br>');
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="slip"><label for="1">Slip Resistant flooring</label> <br>');
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="toilets"><label for="1">Wheelchair Friendly Toilets</label> <br>');
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="ramp"><label for="1">Slope/Ramps/Lifts</label> <br>');
+                    }
+                    else if ($('#places').val() == 'cinema') {
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="walkingsupport"><label for="1">Handrail for walking support</label> <br>');
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="seats"><label for="1">Pre-reserve Seats</label> <br>');
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="doors"><label for="1">Automatic Doors</label> <br>');
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="slip"><label for="1">Slip Resistant flooring</label> <br>');
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="toilets"><label for="1">Wheelchair Friendly Toilets</label> <br>');
+                        $('#facilities').append('<input type="checkbox" name="check" id="1" value="ramp"><label for="1">Slope/Ramps/Lifts</label> <br>');
+                    }
+                });
+            </script>
+
+            <button type="submit" class="btn btn-success col-8 text-center my-2">Submit</button>
+        </form>
+    </div>
+
+    {% if place1 %}
+    <div class="container text-center align-content-center">
+        <div class="places">
+
+
+            <div class="card my-3" style="width: 18rem;">
+                <img class="card-img-top" src="/user_place_profile{{place1[0]}}" alt="Card image cap">
+                <div class="card-body">
+                    <h2 class="card-title">{{place1[1]}}</h2>
+                    <h5>Facilities available : {{percent[0] | round(2) }}%</h5>
+                    <p class="card-text"> <b>Address : </b> {{place1[3]}}, {{place1[4]}}, {{place1[5]}}
+                        <br>
+                        <b>Contact : </b> {{place1[7]}}
+                    </p>
+
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#Modal{{place1[0]}}">Review</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="Modal{{place1[0]}}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{place1[1]}}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="text-align: left;">
+                                    {% for reviews in review1 %}
+                                    <b>{{reviews[1]}}</b>
+                                    {{reviews[2]}} <br>
+                                    {% endfor %}
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="/review{{place1[0]}}" method="POST">
+                                        <input type="email" name="email" placeholder="Enter Email address"
+                                            class="col-12" required>
+                                        <textarea name="review" id="" rows="3" placeholder="Enter your review"
+                                            class="col-12" required></textarea>
+                                        <button type="button" class="btn btn-danger"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-success">Submit Review</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card my-3" style="width: 18rem;">
+                <img class="card-img-top" src="/user_place_profile{{place2[0]}}" alt="Card image cap">
+                <div class="card-body">
+                    <h2 class="card-title">{{place2[1]}}</h2>
+                    <h5>Facilities available : {{percent[1] | round(2) }}%</h5>
+                    <p class="card-text"> <b>Address : </b> {{place2[3]}}, {{place2[4]}}, {{place2[5]}}
+                        <br>
+                        <b>Contact : </b> {{place2[7]}}
+                    </p>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#Modal{{place2[0]}}">Review</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="Modal{{place2[0]}}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{place2[1]}}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="text-align: left;">
+                                    {% for reviews in review2 %}
+                                    <b>{{reviews[1]}}</b>
+                                    {{reviews[2]}} <br>
+                                    {% endfor %}
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="/review{{place2[0]}}" method="POST">
+                                        <input type="email" name="email" placeholder="Enter Email address"
+                                            class="col-12" required>
+                                        <textarea name="review" id="" rows="3" placeholder="Enter your review"
+                                            class="col-12" required></textarea>
+                                        <button type="button" class="btn btn-danger"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-success">Submit Review</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% endif %}
+
+
+    <!-- BootStrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

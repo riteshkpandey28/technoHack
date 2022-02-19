@@ -1,0 +1,125 @@
+:root {
+  --main-color: hsl(232, 47%, 56%);
+  --main-color-accent: hsl(230, 58%, 30%);
+  --text-color: hsl(208, 13%, 45%);
+  --text-color-accent: hsl(235, 26%, 35%);
+  --background-color: hsl(220, 38%, 97%);
+  --line-color: hsl(249, 20%, 86%);
+  --max-width: 60rem;
+  --min-width: 45rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  padding: 10px;
+  border-bottom: solid blue 5px;
+  background-color: #fff;
+}
+
+main {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  padding: 200px 120px 150px 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+main:after {
+  content: "";
+  background-image: url(../images/slider-left-dec.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: 0px;
+  top: 60px;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.warpper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tab {
+  cursor: pointer;
+  padding: 10px 20px;
+  margin: 0px 2px;
+  background: #000;
+  display: inline-block;
+  color: #fff;
+  border-radius: 3px 3px 0px 0px;
+  box-shadow: 0 0.5rem 0.8rem #00000080;
+}
+.panels {
+  background: #fffffff6;
+  box-shadow: 0 2rem 2rem #00000080;
+  width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  padding: 20px;
+}
+.panel {
+  display: none;
+  animation: fadein 0.8s;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.panel-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.radio {
+  display: none;
+}
+#one:checked ~ .panels #one-panel,
+#two:checked ~ .panels #two-panel,
+#three:checked ~ .panels #three-panel {
+  display: block;
+}
+#one:checked ~ .tabs #one-tab,
+#two:checked ~ .tabs #two-tab,
+#three:checked ~ .tabs #three-tab {
+  background: #fffffff6;
+  color: #000;
+  border-top: 3px solid #000;
+}
+
+.panel .content {
+  margin-top: 15%;
+  margin-left: 25px;
+}
+
+.panel .profileImg img {
+  width: 80%;
+}
+
+@media screen and (max-width: 700px) {
+  header img {
+    width: 200px;
+  }
+  header .content h3 {
+    font-size: 1.2rem;
+  }
+  main {
+    padding: 200px 0 !important;
+  }
+  .tab {
+    margin-bottom: 10px;
+  }
+  .panel .profileImg img {
+    width: 100%;
+  }
+}

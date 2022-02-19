@@ -1,0 +1,185 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Patch - Registrations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
+    <!-- <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="assets/css/style.css"> -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='owner/css/cs-skin-elastic.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='owner/css/style.css') }}">
+
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+    <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
+
+    <style>
+        #weatherWidget .currentDesc {
+            color: #ffffff !important;
+        }
+
+        .traffic-chart {
+            min-height: 335px;
+        }
+
+        #flotPie1 {
+            height: 150px;
+        }
+
+        #flotPie1 td {
+            padding: 3px;
+        }
+
+        #flotPie1 table {
+            top: 20px !important;
+            right: -10px !important;
+        }
+
+        .chart-container {
+            display: table;
+            min-width: 270px;
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        #flotLine5 {
+            height: 105px;
+        }
+
+        #flotBarChart {
+            height: 150px;
+        }
+
+        #cellPaiChart {
+            height: 160px;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% with messages = get_flashed_messages(category_filter=["delete"]) %}
+    {% if messages %}
+    {% for msg in messages %}
+    <script>
+        window.alert('{{ msg }}');
+    </script>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    {% include 'owner/nav.html' %}
+    <!-- Content -->
+
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>Your Places</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8 my-2">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <a class="nav-link btn btn-info" href="/owner_register" style="font-size: 13px;"><i
+                                    class="fa fa-plus"></i> Add New </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="content">
+        <div class="animated fadeIn">
+
+            <div class="card">
+                <div class="table-stats order-table table-hover ov-h">
+                    <table class="table ">
+                        <thead>
+                            <tr class="text-center">
+                                <th class="serial">#</th>
+                                <th class="avatar">Image</th>
+                                <th>Name</th>
+                                <th>Location</th>
+                                <th>Reviews</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in place %}
+                            <tr class="text-center">
+                                <td class="serial">{{loop.index}}</td>
+                                <td class="avatar">
+                                    <div class="round-img">
+                                        <a href="#"><img class="rounded-circle" style="width: 38px; height: 38px;"
+                                                src="/place_profile{{i[0]}}" alt=""></a>
+                                    </div>
+                                </td>
+                                <td> <span class="name">{{i[1]}}</span> </td>
+                                <td> <span class="product">{{i[3]}}, {{i[4]}}, {{i[5]}}</span> </td>
+                                <td>
+                                    <a class="nav-link" href="/owner_review{{i[0]}}"><i class="fa fa-star fa-lg"
+                                            style="color: green;"></i></a>
+                                </td>
+                                <td>
+                                    <a class="nav-link" href="/update_place{{i[0]}}"><i class="fa fa-pencil fa-lg"
+                                            style="color: aqua;"></i></a>
+                                </td>
+                                <td>
+                                    <a class="nav-link" href="/delete_place{{i[0]}}"><i class="fa fa-minus-square fa-lg"
+                                            style="color: red;"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div> <!-- /.table-stats -->
+            </div>
+        </div><!-- .animated -->
+    </div><!-- .content -->
+
+    <div class="clearfix"></div>
+
+
+
+
+    </div><!-- /#right-panel -->
+
+    <!-- Right Panel -->
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <!-- <script src="assets/js/main.js"></script> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='owner/js/main.js') }}">
+
+
+
+</body>
+
+</html>
