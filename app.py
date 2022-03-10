@@ -20,7 +20,8 @@ import psycopg2
 app = Flask(__name__)
 app.secret_key = 'ritesh'
 
-database = 'postgresql://postgres:280525@localhost/wheelbuddy'
+#database = 'postgresql://postgres:280525@localhost/wheelbuddy'
+database = 'postgres://gjscfkpgyogvvp:76996cc99db43b0479e8c5ecf0181da2d41561c9f50efbd6622d97ace7259df8@ec2-3-216-221-31.compute-1.amazonaws.com:5432/df095rdjmq8tsv'
 
 def review_model(review):
     loaded_model = TFDistilBertForSequenceClassification.from_pretrained("./model")
